@@ -1,0 +1,11 @@
+a := (1.33 - 2 + 3.2 * .78 * 9.) / 1.1
+b := " " */ Constante string con solo un espacio /*
+d := "@das ds  ad"
+
+*/ Realizo una seleccion /*
+	IF (a <= 30 AND b < 2)
+		b := "correcto" */ asignacion  string /*
+	ENDIF
+
+DIM [ a, b, beta ] AS [ integer, real, string]
+DIM [ c ] AS [ real]
