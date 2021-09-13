@@ -21,10 +21,21 @@ FILE *yyin;
 %%                                              
 programa: bloque { printf("Compilacion OK\n"); }
 bloque: bloque sentencia | sentencia
-sentencia: asignacion | declaracion | decision /* display | get | for | while */
+sentencia: asignacion | declaracion | decision | display | get | for | while
 
 asignacion: ID ASIG expresion { printf("Regla -> asignacion expresion\n"); }
 		  | ID ASIG CONST_STR { printf("Regla -> asignacion constante string\n"); }
+		  
+expresion: expresion OP_SUM termino
+		 | expresion OP_RES termino
+         | termino
+termino: termino OP_MUL factor
+       | termino OP_DIV factor
+       | factor
+factor: PAR_A expresion PAR_C 
+      | ID
+      | CONST_INT
+      | CONST_REAL
 
 declaracion: DIM COR_A lista_dec COR_C { printf("Regla -> declaracion\n"); }
 lista_dec: ID COMA lista_dec COMA tipo { printf("Regla -> lista_dec: ID COMA lista_dec COMA tipo\n"); }
@@ -41,16 +52,17 @@ condicion_mult: expresion comparador expresion and_or expresion comparador expre
 comparador: IGUAL | COMP_MEN | COMP_MEN_IGL | COMP_MAY | COMP_MAY_IGL
 and_or: OP_AND | OP_OR
 
-expresion: expresion OP_SUM termino
-		 | expresion OP_RES termino
-         | termino
-termino: termino OP_MUL factor
-       | termino OP_DIV factor
-       | factor
-factor: PAR_A expresion PAR_C 
-      | ID
-      | CONST_INT
-      | CONST_REAL
+display: DISPLAY CONST_STR { printf("Regla -> display constante string\n"); }
+	   | DISPLAY ID { printf("Regla -> display ID\n"); }
+
+get: GET ID { printf("Regla -> get ID\n"); }
+
+for: FOR ID IGUAL expresion TO expresion COR_A bloque NEXT ID { printf("Regla -> for\n"); }
+   | FOR ID IGUAL expresion TO expresion COR_A STEP CONST_INT COR_C bloque NEXT ID { printf("Regla -> for\n"); }
+
+while: WHILE ID IN COR_A lista_expresiones COR_C DO bloque ENDWHILE { printf("Regla -> while\n"); }
+lista_expresiones: lista_expresiones COMA expresion
+lista_expresiones: expresion
 %%
 
 int main(int argc, char *argv[])

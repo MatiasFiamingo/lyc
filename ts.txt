@@ -12,5 +12,13 @@ Nro | Nombre | Tipo | Valor | Longitud
 10 | _"@das ds  ad" | cte_string | "@das ds  ad" | 13
 11 | _30 | cte_ent | 30 | 0
 12 | _"correcto" | cte_string | "correcto" | 10
-13 | _beta | id |  | 4
-14 | _c | id |  | 1
+13 | _"ewr" | cte_string | "ewr" | 5
+14 | _base | id |  | 4
+15 | _var1 | id |  | 4
+16 | _beta | id |  | 4
+17 | _c | id |  | 1
+18 | _1 | cte_ent | 1 | 0
+19 | _3 | cte_ent | 3 | 0
+20 | _-1 | cte_ent | -1 | 0
+21 | _var2 | id |  | 4
+22 | _10 | cte_ent | 10 | 0

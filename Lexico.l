@@ -14,8 +14,8 @@ int tope = 0;
 
 DIGITO		[0-9]
 LETRA		[a-zA-Z]
-CONST_REAL 	({DIGITO}+"."{DIGITO}+|"."{DIGITO}+|{DIGITO}+".")
-CONST_INT 	{DIGITO}+
+CONST_REAL 	-?({DIGITO}+"."{DIGITO}+|"."{DIGITO}+|{DIGITO}+".")
+CONST_INT 	-?{DIGITO}+
 CONST_STR	\"(\\.|[^\"])*\"
 ID			{LETRA}({LETRA}|{DIGITO}|_)*
 COMENTARIO	\*\/.*\/\*

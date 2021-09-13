@@ -11,12 +11,13 @@ DISPLAY "ewr" */ donde "ewr" debe ser una cte string /*
 GET base */ donde base es una variable /*
 DISPLAY var1 */ donde var1 es una vble numerica definida previamente /*
 
-DIM [ a, b, beta ] AS [ integer, real, string]
-DIM [ c ] AS [ real]
+DIM [ a, b, beta ] AS [ integer, real, string ]
+DIM [ c ] AS [ real ]
 
-FOR var1 = 1 TO 3 [ Step 1 ]
-	*/ Aca va el codigo del FOR /*
-NEXT var1
+FOR a = 1 + b TO 3 + c [ Step -1 ]
+	a := a + 1
+	b := b + 3
+NEXT a
 
 WHILE
 var2 IN [2, 10]
