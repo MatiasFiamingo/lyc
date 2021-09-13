@@ -1,0 +1,16 @@
+Nro | Nombre | Tipo | Valor | Longitud
+0 | _a | id |  | 1
+1 | _1.33 | cte_real | 1.33 | 0
+2 | _2 | cte_ent | 2 | 0
+3 | _3.2 | cte_real | 3.2 | 0
+4 | _.78 | cte_real | .78 | 0
+5 | _9. | cte_real | 9. | 0
+6 | _1.1 | cte_real | 1.1 | 0
+7 | _b | id |  | 1
+8 | _" " | cte_string | " " | 3
+9 | _d | id |  | 1
+10 | _"@das ds  ad" | cte_string | "@das ds  ad" | 13
+11 | _30 | cte_ent | 30 | 0
+12 | _"correcto" | cte_string | "correcto" | 10
+13 | _beta | id |  | 4
+14 | _c | id |  | 1

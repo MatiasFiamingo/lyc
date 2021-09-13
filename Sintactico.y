@@ -3,11 +3,14 @@
 #include <stdlib.h>
 #include <conio.h>
 #include "y.tab.h"
-int yylval;
-int yystopparser=0;
+#include "tabla_simbolos.h"
+
+/* Desde el lexer. */
+extern int yylineno; 
+extern simbolo tabla_simbolos[1000];
+extern tope;
+
 FILE *yyin;
-char *yyltext;
-char *yytext;
 %}
 
 %token ASIG COMA PAR_A PAR_C COR_A COR_C OP_SUM OP_RES OP_MUL OP_DIV
@@ -52,20 +55,23 @@ factor: PAR_A expresion PAR_C
 
 int main(int argc, char *argv[])
 {
-  if ((yyin = fopen(argv[1], "rt")) == NULL)
-  {
-	printf("\nNo se puede abrir el archivo: %s\n", argv[1]);
-  }
-  else
-  {
-	yyparse();
-  }
-  fclose(yyin);
-  return 0;
+	if ((yyin = fopen(argv[1], "rt")) == NULL)
+	{
+		printf("\nNo se puede abrir el archivo: %s\n", argv[1]);
+	}
+	else
+	{
+		yyparse();
+		mostrar_ts (tabla_simbolos, tope);
+		guardar_ts (tabla_simbolos, tope);
+		fclose(yyin);
+	}
+
+	return 0;
 }
-int yyerror(void)
+
+int yyerror()
 {
-  printf("Syntax Error\n");
-	system ("Pause");
-	exit (1);
+    printf("Error sintactico en linea %d\n", yylineno);
+    return 1;
 }

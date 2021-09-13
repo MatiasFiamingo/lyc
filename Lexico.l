@@ -3,7 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "y.tab.h"
+#include "tabla_simbolos.h"
 
+simbolo tabla_simbolos[1000];
+int tope = 0;
 %}
 
 %option noyywrap
@@ -53,7 +56,10 @@ COMENTARIO	\*\/.*\/\*
 "TO"			{ printf("TO: %s\n", yytext); return TO; }
 "Step"			{ printf("STEP: %s\n", yytext); return STEP; }
 "NEXT"			{ printf("NEXT: %s\n", yytext); return NEXT; }
-{ID}        	{ printf("ID: %s\n", yytext); return ID; }
+{ID}        	{ 	
+					printf("ID: %s\n", yytext);
+					insertar_id_en_ts(tabla_simbolos, &tope, yytext);
+					return ID; }
 {CONST_INT}		{
 					if (atoi (yytext) < -32768 || atoi (yytext) > 32767)
                     {			                  
@@ -62,6 +68,7 @@ COMENTARIO	\*\/.*\/\*
 					}
 					else
 					{
+						insertar_cte_ent_en_ts(tabla_simbolos, &tope, yytext);
 						printf("CONST_INT: %s\n", yytext);
 						return CONST_INT;
 					}
@@ -74,6 +81,7 @@ COMENTARIO	\*\/.*\/\*
 					}
 					else
 					{
+						insertar_cte_real_en_ts (tabla_simbolos, &tope, yytext);
 						printf("CONST_REAL: %s\n", yytext);
 						return CONST_REAL;
 					}
@@ -86,6 +94,7 @@ COMENTARIO	\*\/.*\/\*
 					}
 					else
 					{
+						insertar_cte_string_en_ts(tabla_simbolos, &tope, yytext);
 						printf("CONST_STR: %s\n", yytext);
 						return CONST_STR;
 					}
@@ -98,25 +107,3 @@ COMENTARIO	\*\/.*\/\*
 " "
 .			yyerror();
 %%
-
-/*
-int main(int argc, char *argv[])
-{
-  if ((yyin = fopen(argv[1], "rt")) == NULL)
-  {
-	printf("\nNo se puede abrir el archivo: %s\n", argv[1]);
-  }
-  else
-  {
-	yylex();
-  }
-  fclose(yyin);
-  return 0;
-}
-int yyerror(void)
-{
-  printf("Error lexico: El caracter '%s' en linea %d es invalido\n", yytext, yylineno);
-	system ("Pause");
-	exit (1);
-}
-*/
