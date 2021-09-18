@@ -59,6 +59,7 @@ get: GET ID { printf("Regla -> get ID\n"); }
 
 for: FOR ID IGUAL expresion TO expresion COR_A bloque NEXT ID { printf("Regla -> for\n"); }
    | FOR ID IGUAL expresion TO expresion COR_A STEP CONST_INT COR_C bloque NEXT ID { printf("Regla -> for\n"); }
+/*Quitar COR_A de la primera regla*/
 
 while: WHILE ID IN COR_A lista_expresiones COR_C DO bloque ENDWHILE { printf("Regla -> while\n"); }
 lista_expresiones: lista_expresiones COMA expresion
