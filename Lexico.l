@@ -57,9 +57,17 @@ COMENTARIO	\*\/.*\/\*
 "Step"			{ printf("STEP: %s\n", yytext); return STEP; }
 "NEXT"			{ printf("NEXT: %s\n", yytext); return NEXT; }
 {ID}        	{ 	
+					if(strlen (yytext) > 64)
+					{
+						printf ("Error lexico en linea %d. La longitud del identificador debe ser a lo sumo 64 caracteres.\n", yylineno);
+                        exit (1);
+					}
+					else
+					{
 					printf("ID: %s\n", yytext);
 					insertar_id_en_ts(tabla_simbolos, &tope, yytext);
 					return ID; }
+					}
 {CONST_INT}		{
 					if (atoi (yytext) < -32768 || atoi (yytext) > 32767)
                     {			                  
