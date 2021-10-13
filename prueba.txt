@@ -9,14 +9,48 @@ IF (a > 30)
 	b := "Incorrecto"
 ENDIF
 
+IF NOT (c < 30 + a )
+	a := "NOT"
+ENDIF
+
 */ Realizo una condicion multiple /*
 IF (a <= 30 AND b < 2)
 	b := "correcto" */ asignacion  string /*
 ENDIF
 
+IF (a <= 30)
+	b := "correcto"
+ELSE
+	b := "incorrecto"
+ENDIF
+
+IF NOT (a <= 30)
+	b := "correcto"
+ELSE
+	b := "incorrecto"
+ENDIF
+
+IF (a <= 30 AND b < 2)
+	b := "correcto"
+ELSE
+	b := "incorrecto"
+ENDIF
+
+IF (a < 1)
+	a := b
+	IF (b > 2)
+		b := "correcto"
+	ENDIF
+ENDIF
+
 DISPLAY "ewr" */ donde "ewr" debe ser una cte string /*
 GET base */ donde base es una variable /*
 DISPLAY var1 */ donde var1 es una vble numerica definida previamente /*
+
+FOR a = 1 + b TO 3 + c
+	a := a + 1
+	b := b + 3
+NEXT a
 
 FOR a = 1 + b TO 3 + c [ Step -1 ]
 	a := a + 1

@@ -40,6 +40,7 @@ COMENTARIO	\*\/.*\/\*
 "DO"			return DO;
 "ENDWHILE"		return ENDWHILE;
 "IF"			return IF;
+"ELSE"			return ELSE;
 "ENDIF"			return ENDIF;
 "DISPLAY"		return DISPLAY;
 "GET"			return GET;

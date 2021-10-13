@@ -15,11 +15,11 @@ FILE *yyin;
 
 %token ASIG COMA PAR_A PAR_C COR_A COR_C OP_SUM OP_RES OP_MUL OP_DIV
 %token COMP_MEN COMP_MAY COMP_MEN_IGL COMP_MAY_IGL OP_AND OP_OR NOT
-%token WHILE IN DO ENDWHILE IF ENDIF DISPLAY GET DIM AS FOR IGUAL TO STEP NEXT
+%token WHILE IN DO ENDWHILE IF ELSE ENDIF DISPLAY GET DIM AS FOR IGUAL TO STEP NEXT
 %token ID VAR_INT VAR_REAL VAR_STR CONST_INT CONST_REAL CONST_STR
                                                 
 %%                                              
-programa: bloque { printf("Compilacion OK\n"); }
+programa: bloque { printf("\nCompilacion OK\n"); }
 bloque: bloque sentencia | sentencia
 sentencia: asignacion | declaracion | decision | display | get | for | while
 
@@ -44,9 +44,12 @@ tipo: VAR_INT { printf("Regla -> tipo: VAR_INT\n"); }
 	| VAR_REAL { printf("Regla -> tipo: VAR_REAL\n"); }
 	| VAR_STR { printf("Regla -> tipo: VAR_STR\n"); }
 	
-decision: IF PAR_A condicion_simple PAR_C bloque ENDIF { printf("Regla -> decision\n"); }
-		| IF NOT PAR_A condicion_simple PAR_C bloque ENDIF { printf("Regla -> decision\n"); }
-		| IF PAR_A condicion_mult PAR_C bloque ENDIF { printf("Regla -> decision\n"); }
+decision: IF PAR_A condicion_simple PAR_C bloque ENDIF { printf("Regla -> decision con condicion simple\n"); }
+		| IF PAR_A condicion_simple PAR_C bloque ELSE bloque ENDIF { printf("Regla -> decision con condicion simple con ELSE\n"); }
+		| IF NOT PAR_A condicion_simple PAR_C bloque ENDIF { printf("Regla -> decision NOT con condicion simple\n"); }
+		| IF NOT PAR_A condicion_simple PAR_C bloque ELSE bloque ENDIF { printf("Regla -> decision NOT con condicion simple con ELSE\n"); }
+		| IF PAR_A condicion_mult PAR_C bloque ENDIF { printf("Regla -> decision con condicion multiple\n"); }
+		| IF PAR_A condicion_mult PAR_C bloque ELSE bloque ENDIF { printf("Regla -> decision con condicion multiple con ELSE\n"); }
 condicion_simple: expresion comparador expresion
 condicion_mult: expresion comparador expresion and_or expresion comparador expresion
 comparador: IGUAL | COMP_MEN | COMP_MEN_IGL | COMP_MAY | COMP_MAY_IGL
@@ -57,8 +60,8 @@ display: DISPLAY CONST_STR { printf("Regla -> display constante string\n"); }
 
 get: GET ID { printf("Regla -> get ID\n"); }
 
-for: FOR ID IGUAL expresion TO expresion bloque NEXT ID { printf("Regla -> for\n"); }
-   | FOR ID IGUAL expresion TO expresion COR_A STEP CONST_INT COR_C bloque NEXT ID { printf("Regla -> for\n"); }
+for: FOR ID IGUAL expresion TO expresion bloque NEXT ID { printf("Regla -> for sin Step\n"); }
+   | FOR ID IGUAL expresion TO expresion COR_A STEP CONST_INT COR_C bloque NEXT ID { printf("Regla -> for con Step\n"); }
 
 while: WHILE condicion_simple DO bloque ENDWHILE { printf("Regla -> while\n"); }
 while: WHILE condicion_mult DO bloque ENDWHILE { printf("Regla -> while\n"); }
@@ -75,7 +78,11 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
+		printf("\n");
 		yyparse();
+		
+		printf("\nTabla de simbolos\n");
+		printf("-----------------\n");
 		mostrar_ts (tabla_simbolos, tope);
 		guardar_ts (tabla_simbolos, tope);
 		fclose(yyin);

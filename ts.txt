@@ -1,24 +1,30 @@
 Nro | Nombre | Tipo | Valor | Longitud
 0 | _a | id |  | 1
-1 | _1.33 | cte_real | 1.33 | 0
-2 | _2 | cte_ent | 2 | 0
-3 | _3.2 | cte_real | 3.2 | 0
-4 | _.78 | cte_real | .78 | 0
-5 | _9. | cte_real | 9. | 0
-6 | _1.1 | cte_real | 1.1 | 0
-7 | _b | id |  | 1
-8 | _" " | cte_string | " " | 3
-9 | _d | id |  | 1
-10 | _"@das ds  ad" | cte_string | "@das ds  ad" | 13
-11 | _30 | cte_ent | 30 | 0
-12 | _"correcto" | cte_string | "correcto" | 10
-13 | _"ewr" | cte_string | "ewr" | 5
-14 | _base | id |  | 4
-15 | _var1 | id |  | 4
-16 | _beta | id |  | 4
-17 | _c | id |  | 1
+1 | _b | id |  | 1
+2 | _beta | id |  | 4
+3 | _c | id |  | 1
+4 | _1.33 | cte_real | 1.33 | 0
+5 | _2 | cte_ent | 2 | 0
+6 | _3.2 | cte_real | 3.2 | 0
+7 | _.78 | cte_real | .78 | 0
+8 | _9. | cte_real | 9. | 0
+9 | _1.1 | cte_real | 1.1 | 0
+10 | _" " | cte_string | " " | 3
+11 | _d | id |  | 1
+12 | _"@das ds  ad" | cte_string | "@das ds  ad" | 13
+13 | _30 | cte_ent | 30 | 0
+14 | _"Incorrecto" | cte_string | "Incorrecto" | 12
+15 | _"NOT" | cte_string | "NOT" | 5
+16 | _"correcto" | cte_string | "correcto" | 10
+17 | _"incorrecto" | cte_string | "incorrecto" | 12
 18 | _1 | cte_ent | 1 | 0
-19 | _3 | cte_ent | 3 | 0
-20 | _-1 | cte_ent | -1 | 0
-21 | _var2 | id |  | 4
-22 | _10 | cte_ent | 10 | 0
+19 | _"ewr" | cte_string | "ewr" | 5
+20 | _base | id |  | 4
+21 | _var1 | id |  | 4
+22 | _3 | cte_ent | 3 | 0
+23 | _-1 | cte_ent | -1 | 0
+24 | _var2 | id |  | 4
+25 | _10 | cte_ent | 10 | 0
+26 | _5 | cte_ent | 5 | 0
+27 | _var3 | id |  | 4
+28 | _4 | cte_ent | 4 | 0
