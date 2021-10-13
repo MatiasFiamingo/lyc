@@ -1,18 +1,22 @@
+DIM [ a, b, beta ] AS [ integer, real, string ]
+DIM [ c ] AS [ real ]
+
 a := (1.33 - 2 + 3.2 * .78 * 9.) / 1.1
 b := " " */ Constante string con solo un espacio /*
 d := "@das ds  ad"
 
-*/ Realizo una seleccion /*
-	IF (a <= 30 AND b < 2)
-		b := "correcto" */ asignacion  string /*
-	ENDIF
+IF (a > 30)
+	b := "Incorrecto"
+ENDIF
+
+*/ Realizo una condicion multiple /*
+IF (a <= 30 AND b < 2)
+	b := "correcto" */ asignacion  string /*
+ENDIF
 
 DISPLAY "ewr" */ donde "ewr" debe ser una cte string /*
 GET base */ donde base es una variable /*
 DISPLAY var1 */ donde var1 es una vble numerica definida previamente /*
-
-DIM [ a, b, beta ] AS [ integer, real, string ]
-DIM [ c ] AS [ real ]
 
 FOR a = 1 + b TO 3 + c [ Step -1 ]
 	a := a + 1
@@ -24,4 +28,14 @@ var2 IN [2, 10]
 DO
  a := b
  c := d
+ENDWHILE
+
+WHILE
+	var2 < 5
+DO
+	WHILE 
+		var3 >4
+	DO
+		var2:= var2 + var3
+	ENDWHILE
 ENDWHILE
