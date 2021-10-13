@@ -21,41 +21,41 @@ ID			{LETRA}({LETRA}|{DIGITO}|_)*
 COMENTARIO	\*\/.*\/\*
 
 %%
-":="			{ printf("ASIG: %s\n", yytext); return ASIG; }
-","				{ printf("COMA: %s\n", yytext); return COMA; }
-"("				{ printf("PAR_A: %s\n", yytext); return PAR_A; }
-")"				{ printf("PAR_C: %s\n", yytext); return PAR_C; }
-"["				{ printf("COR_A: %s\n", yytext); return COR_A; }
-"]"				{ printf("COR_C: %s\n", yytext); return COR_C; }
-"+"				{ printf("OP_SUM: %s\n", yytext); return OP_SUM; }
-"-"				{ printf("OP_RES: %s\n", yytext); return OP_RES; }
-"*"				{ printf("OP_MUL: %s\n", yytext); return OP_MUL; }
-"/"				{ printf("OP_DIV: %s\n", yytext); return OP_DIV; }
-"<"				{ printf("COMP_MEN: %s\n", yytext); return COMP_MEN; }
-">"				{ printf("COMP_MAY: %s\n", yytext); return COMP_MAY; }
-"<="			{ printf("COMP_MEN_IGL: %s\n", yytext); return COMP_MEN_IGL; }
-">="			{ printf("COMP_MAY_IGL: %s\n", yytext); return COMP_MAY_IGL; }
-"WHILE"			{ printf("WHILE: %s\n", yytext); return WHILE; }
-"IN"			{ printf("IN: %s\n", yytext); return IN; }
-"DO"			{ printf("DO: %s\n", yytext); return DO; }
-"ENDWHILE"		{ printf("ENDWHILE: %s\n", yytext); return ENDWHILE; }
-"IF"			{ printf("IF: %s\n", yytext); return IF; }
-"ENDIF"			{ printf("ENDIF: %s\n", yytext); return ENDIF; }
-"DISPLAY"		{ printf("DISPLAY: %s\n", yytext); return DISPLAY; }
-"GET"			{ printf("GET: %s\n", yytext); return GET; }
-"AND"			{ printf("OP_AND: %s\n", yytext); return OP_AND; }
-"OR"			{ printf("OP_OR: %s\n", yytext); return OP_OR; }
-"NOT"			{ printf("NOT: %s\n", yytext); return NOT; }
-"DIM"			{ printf("DIM: %s\n", yytext); return DIM; }
-"AS"			{ printf("OP_AS: %s\n", yytext); return AS; }
-"integer"		{ printf("VAR_INT: %s\n", yytext); return VAR_INT; }
-"real"			{ printf("VAR_REAL: %s\n", yytext); return VAR_REAL; }
-"string"		{ printf("VAR_STR: %s\n", yytext); return VAR_STR; }
-"FOR"			{ printf("FOR: %s\n", yytext); return FOR; }
-"="				{ printf("IGUAL: %s\n", yytext); return IGUAL; }
-"TO"			{ printf("TO: %s\n", yytext); return TO; }
-"Step"			{ printf("STEP: %s\n", yytext); return STEP; }
-"NEXT"			{ printf("NEXT: %s\n", yytext); return NEXT; }
+":="			return ASIG;
+","				return COMA;
+"("				return PAR_A;
+")"				return PAR_C;
+"["				return COR_A;
+"]"				return COR_C;
+"+"				return OP_SUM;
+"-"				return OP_RES;
+"*"				return OP_MUL;
+"/"				return OP_DIV;
+"<"				return COMP_MEN;
+">"				return COMP_MAY;
+"<="			return COMP_MEN_IGL;
+">="			return COMP_MAY_IGL;
+"WHILE"			return WHILE;
+"IN"			return IN;
+"DO"			return DO;
+"ENDWHILE"		return ENDWHILE;
+"IF"			return IF;
+"ENDIF"			return ENDIF;
+"DISPLAY"		return DISPLAY;
+"GET"			return GET;
+"AND"			return OP_AND;
+"OR"			return OP_OR;
+"NOT"			return NOT;
+"DIM"			return DIM;
+"AS"			return AS;
+"integer"		return VAR_INT;
+"real"			return VAR_REAL;
+"string"		return VAR_STR;
+"FOR"			return FOR;
+"="				return IGUAL;
+"TO"			return TO;
+"Step"			return STEP;
+"NEXT"			return NEXT;
 {ID}        	{ 	
 					if(strlen (yytext) > 64)
 					{
@@ -64,7 +64,6 @@ COMENTARIO	\*\/.*\/\*
 					}
 					else
 					{
-					printf("ID: %s\n", yytext);
 					insertar_id_en_ts(tabla_simbolos, &tope, yytext);
 					return ID; }
 					}
@@ -77,7 +76,6 @@ COMENTARIO	\*\/.*\/\*
 					else
 					{
 						insertar_cte_ent_en_ts(tabla_simbolos, &tope, yytext);
-						printf("CONST_INT: %s\n", yytext);
 						return CONST_INT;
 					}
 				}
@@ -90,7 +88,6 @@ COMENTARIO	\*\/.*\/\*
 					else
 					{
 						insertar_cte_real_en_ts (tabla_simbolos, &tope, yytext);
-						printf("CONST_REAL: %s\n", yytext);
 						return CONST_REAL;
 					}
 				}
@@ -103,11 +100,10 @@ COMENTARIO	\*\/.*\/\*
 					else
 					{
 						insertar_cte_string_en_ts(tabla_simbolos, &tope, yytext);
-						printf("CONST_STR: %s\n", yytext);
 						return CONST_STR;
 					}
 				}
-{COMENTARIO}	{ printf("COMENTARIO: %s\n", yytext); }
+{COMENTARIO}
 "\n"
 "\t"
 "\n\t"
